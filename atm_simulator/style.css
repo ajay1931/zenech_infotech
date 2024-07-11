@@ -4,11 +4,15 @@ body {
     margin: 0%;
 }
 
-#container {
+#launchingPage {
     background-image: url(login_img.jpg);
     background-size: cover;
     background-position: center;
     height: 120vh;
+}
+
+#container {
+
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -20,22 +24,58 @@ body {
     text-align: center;
     width: fit-content;
     height: fit-content;
-    padding: .80em;
+    padding: 2em;
     border-radius: 1em;
     /* border: solid; */
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(40px);
 }
-input{
+
+input {
     padding: .6em;
     margin-bottom: 1em;
     border-radius: 1em;
+}
+
+.anchorTag {
+    text-align: end;
+    padding-bottom: 1em;
+}
+
+#loginButton {
+    border-radius: .75em;
+    padding: .50em;
+    cursor: pointer;
+    width: 18em;
+}
+
+button:hover {
+    background-color: rgb(170, 167, 167);
+}
+
+
+
+
+#container1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#containerItems {
+    background: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    padding: 2em;
+    border-radius: 1em;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(40px);
+    color: rgb(12, 12, 12);
 }
 button{
     border-radius: .75em;
     padding: .50em;
     cursor: pointer;
-}
-button:hover{
-    background-color: rgb(170, 167, 167);
 }
