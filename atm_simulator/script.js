@@ -1,81 +1,64 @@
-// let balance = 0;
-// let transactionHistory = [];
-// let users = [
-//     { username: 'user1', password: 'pass1', name: 'User One', balance: 500 },
-//     { username: 'user2', password: 'pass2', name: 'User Two', balance: 300 }
-// ];
-// let currentUser = null;
+let currentUser = null;
+let users = [
+    { username: "user1", password: "1234", balance: 1000 },
+    { username: "user2", password: "1234", balance: 500 },
+    { username: "user3", password: "1234", balance: 300 },
+    { username: "user4", password: "1234", balance: 100 },
+    { username: "user5", password: "1234", balance: 0 },
+];
+let login = (event) => {
+    event.preventDefault();
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let user = users.find((value) => value.username === username && value.password === password);
+    if (user) {
+        currentUser = user;
+        document.getElementById("user_name").textContent = currentUser.username;
+        document.getElementById("current_balance").textContent = currentUser.balance;
+    } else {
+        alert("Invalid user name or password")
+    }
+};
 
-// function updateBalance() {
-//     document.getElementById('balance').textContent = currentUser.balance.toFixed(2);
-// }
+let deposit = () => {
+    if (!currentUser) {
+        alert("Please login first");
+        return;
+    }
 
-// function showMessage(message, isError = false) {
-//     const messageElement = document.getElementById('message');
-//     messageElement.textContent = message;
-//     messageElement.style.color = isError ? 'red' : 'green';
-// }
+    let depositAmount = Number(document.getElementById("depositAmount").value);
+    if (isNaN(depositAmount) || depositAmount <= 0) {
+        alert("Enter valid amount")
+        return;
+    }
+    currentUser.balance += depositAmount;
+    document.getElementById("current_balance").textContent = currentUser.balance;
+    transcation(`deposit:₹${depositAmount}`)
+};
 
-// function addTransaction(type, amount) {
-//     const transaction = {
-//         type,
-//         amount: amount.toFixed(2),
-//         date: new Date().toLocaleString()
-//     };
-//     transactionHistory.push(transaction);
-//     updateTransactionHistory();
-// }
+let withdrawal = () => {
+    if (!currentUser) {
+        alert("please login first")
+    }
+    let withdrawalAmount = parseFloat(document.getElementById("WithdrawalAmount").value);
+    if (isNaN(withdrawalAmount) || withdrawalAmount <= 0) {
+        alert("enter valid amount")
+    }
+    if (withdrawalAmount > currentUser.balance) {
+        alert("Insufficient balance.");
+        return;
+    }
+    currentUser.balance -= withdrawalAmount;
+    document.getElementById("current_balance").textContent = currentUser.balance;
+    transcation(`withdrawal:₹${withdrawalAmount}`)
+};
 
-// function updateTransactionHistory() {
-//     const transactionList = document.getElementById('transaction-list');
-//     transactionList.innerHTML = '';
-//     transactionHistory.forEach(transaction => {
-//         const li = document.createElement('li');
-//         li.textContent = `${transaction.date} - ${transaction.type}: $${transaction.amount}`;
-//         transactionList.appendChild(li);
-//     });
-// }
-
-// function deposit() {
-//     const amount = parseFloat(document.getElementById('amount').value);
-//     if (isNaN(amount) || amount <= 0) {
-//         showMessage('Please enter a valid amount.', true);
-//         return;
-//     }
-//     currentUser.balance += amount;
-//     updateBalance();
-//     showMessage(`Successfully deposited $${amount.toFixed(2)}.`);
-//     addTransaction('Deposit', amount);
-// }
-
-// function withdraw() {
-//     const amount = parseFloat(document.getElementById('amount').value);
-//     if (isNaN(amount) || amount <= 0) {
-//         showMessage('Please enter a valid amount.', true);
-//         return;
-//     }
-//     if (amount > currentUser.balance) {
-//         showMessage('Insufficient funds.', true);
-//         return;
-//     }
-//     currentUser.balance -= amount;
-//     updateBalance();
-//     showMessage(`Successfully withdrew $${amount.toFixed(2)}.`);
-//     addTransaction('Withdraw', amount);
-// }
-
-// function login() {
-//     const username = document.getElementById('username').value;
-//     const password = document.getElementById('password').value;
-//     const user = users.find(u => u.username === username && u.password === password);
-    
-//     if (user) {
-//         currentUser = user;
-//         document.getElementById('user-name').textContent = currentUser.name;
-//         updateBalance();
-//         document.getElementById('login-container').style.display = 'none';
-//         document.getElementById('atm-container').style.display = 'block';
-//     } else {
-//         document.getElementById('login-message').textContent = 'Invalid username or password.';
-//     }
-// }
+let transcation = (message) => {
+    let transcationDetails = document.getElementById("transcationDetails");
+    let currentDate = new Date().toDateString();
+    transcationDetails.innerHTML = (`${currentDate} and ${message}`)
+    let ul=document.getElementById("ul")
+    let listitem = document.createElement("li")
+    listitem.innerHTML = transcationDetails.innerHTML
+    ul.append(listitem)
+};
