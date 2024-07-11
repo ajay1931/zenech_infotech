@@ -6,22 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATM stimulator</title>
     <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 
 <body>
-    <div id="container">
-        <form id="loginForm">
-            <h1>ATM stimulator</h1>
-            <div id="inputs">
-                <input type="text" placeholder="login ID" id="username" required>
-                <br>
-                <input type="password" placeholder="password" id="password" required>
-                <br>
-                <button>login</button>
-            </div>
-        </form>
-    </div>
+    <div id="launchingPage">
+        <div id="container">
+            <form id="loginForm">
+                <h1>ATM stimulator</h1>
+                <div>
+                    <input type="text" placeholder="login ID" id="username" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div>
+                    <input type="password" placeholder="password" id="password" required>
+                    <i class='bx bxs-lock-open'></i>
+                </div>
+                <div class="anchorTag">
+                    <a href="">forgot password</a>
+                </div>
+                <div>
+                    <button id="loginButton" onclick="login(event)">login</button>
+                </div>
+                <div class="anchorTag">
+                    <p>Don't have an account?
+                        <a href="">Register</a>
+                    </p>
 
+                </div>
+            </form>
+        </div>
+        <br>
+        <div id="container1">
+            <div id="containerItems">
+
+                <head>
+                    <h1>Welcome back, <span id="user_name"></span></h1>
+                    <h2>Your Balance:₹<span id="current_balance">0.00</span></h2>
+                </head>
+                <hr>
+
+                <div>
+                    <form>
+                        <label>Deposit:</label>
+                        <input id="depositAmount" type="number" placeholder="deposit amount">
+                        <button type="button" onclick="deposit()"> submit</button>
+                        <input type="reset">
+                    </form>
+                </div>
+                <div>
+                    <form>
+                        <label>Withdrawal:</label>
+                        <input id="WithdrawalAmount" type="number" placeholder="Withdrawal amount">
+                        <button type="button" onclick="withdrawal()"> submit</button>
+                        <input type="reset">
+                    </form>
+                </div>
+                <div>
+                    <label>Transcations</label>
+                    <p id="transcationDetails">
+                        <ul id="ul">
+                            
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="script.js"></script>
 
 </html>
