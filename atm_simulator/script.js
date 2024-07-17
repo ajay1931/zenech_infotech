@@ -15,6 +15,8 @@ let login = (event) => {
         currentUser = user;
         document.getElementById("user_name").textContent = currentUser.username;
         document.getElementById("current_balance").textContent = currentUser.balance;
+        document.getElementById("container").style.display = "none"
+        document.getElementById("container1").style.display = "center"
     } else {
         alert("Invalid user name or password")
     }
