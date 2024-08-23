@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+</head>
+
+<body>
+    <input id="input">
+    <button onclick="additem()">add</button>
+    <ul id="list-container">
+        <li>hello
+            <button onclick="deleteitem(event)">delete</button>
+        </li>
+    </ul>
+
+    <script>
+        var ul = document.getElementById("list-container")
+        var input = document.getElementById("input")
+        function additem() {
+            var listitem = document.createElement("li")
+            listitem.innerHTML = input.value + "<button onclick='deleteitem(event)'>delete</button>"
+            ul.append(listitem)
+        }
+
+        function deleteitem(event) {
+            event.target.parentElement.remove()
+
+        }
+    </script>
+</body>
+
+</html>
